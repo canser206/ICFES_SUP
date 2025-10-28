@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICFES Supérate - Tu Mejor Puntaje Está a un Clic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+            max-width: 1200px;
+        }
+        
+        .logo-hero {
+            font-size: 4em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: white;
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            margin: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 3px solid white;
+            color: white;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            animation: fadeIn 1s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+        
+        .team-banner {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .team-banner h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 100px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #aaa;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        /* Problem-Solution Combined */
+        .problem-solution {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+        }
+        
+        .ps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .ps-box {
+            padding: 40px;
+            border-radius: 25px;
+        }
+        
+        .problem-box {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(201, 42, 42, 0.15));
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .solution-box {
+            background: linear-gradient(135deg, rgba(81, 207, 102, 0.15), rgba(47, 158, 68, 0.15));
+            border: 2px solid rgba(81, 207, 102, 0.3);
+        }
+        
+        .ps-title {
+            font-size: 2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .ps-list {
+            list-style: none;
+        }
+        
+        .ps-list li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        
+        .ps-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #51cf66;
+        }
+        
+        .problem-box .ps-list li::before {
+            content: '✗';
+            color: #ff6b6b;
+        }
+        
+        /* Features Grid */
+        .features {
+            padding: 100px 20px;
+            background: #0a0a0a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+        }
+        
+        .feature-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .feature-desc {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        /* Screenshots */
+        .screenshots {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .mockup-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .mockup-card:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
+        }
+        
+        .mockup-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .mockup-title {
+            font-size: 1.6em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .mockup-desc {
+            font-size: 1.05em;
+            opacity: 0.9;
+        }
+        
+        /* Download Section */
+        .download-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            text-align: center;
+        }
+        
+        .download-section h2 {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .download-section p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+        }
+        
+        .download-qr {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 25px 0;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .download-qr img {
+            width: 220px;
+            height: 220px;
+        }
+        
+        .download-link {
+            display: inline-block;
+            font-size: 1.3em;
+            background: white;
+            color: #f5576c;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .download-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 100px 20px;
+            background: #0a0a0a;
+        }
+        
+        .team-members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 50px auto 0;
+        }
+        
+        .member-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+        
+        .member-name {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .member-role {
+            font-size: 1.05em;
+            color: #aaa;
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            background: rgba(255,255,255,0.05);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: #667eea;
+            background: rgba(255,255,255,0.08);
+        }
+        
+        .benefit-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .benefit-title {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .benefit-desc {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 50px 20px;
+            background: #000;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-hero {
+                font-size: 2.5em;
+            }
+            
+            .hero h2 {
+                font-size: 1.4em;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .ps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .cta-button {
+                padding: 16px 35px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="logo-hero">🎓 ICFES SUPÉRATE</h1>
+            <h2>Alcanza Tu Mejor Puntaje en las Pruebas Saber 11°</h2>
+            <p class="hero-subtitle">La aplicación colombiana que revoluciona la preparación académica con tecnología de punta</p>
+            
+            <div style="margin: 35px 0;">
+                <a href="https://scan.page/8QdEV3" class="cta-button" target="_blank">📥 Descargar Gratis</a>
+                <a href="#features" class="cta-button cta-secondary">✨ Ver Funcionalidades</a>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">Preguntas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Materias</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Gratis</span>
+                </div>
+            </div>
+            
+            <div class="team-banner">
+                <h3>👥 Desarrollado por:</h3>
+                <div style="font-size: 1.1em; margin-top: 8px;">
+                    <strong>Enmanuel Josué Machado Medina</strong> & <strong>Edwin Daniel Arias Rebolledo</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem-Solution Section -->
+    <section class="problem-solution">
+        <h2 class="section-title">🎯 El Problema y Nuestra Solución</h2>
+        <p class="section-subtitle">Las pruebas Saber 11 son requisito fundamental para la educación superior, pero la preparación es costosa e inaccesible</p>
+        
+        <div class="ps-container">
+            <div class="ps-box problem-box">
+                <h3 class="ps-title">😰 Los Desafíos</h3>
+                <ul class="ps-list">
+                    <li>Deficiencias en lectura crítica, matemáticas, ciencias sociales, naturales e inglés</li>
+                    <li>Cursos presenciales entre $300.000 y $1.500.000</li>
+                    <li>Falta de herramientas accesibles e interactivas</li>
+                    <li>Desmotivación y falta de hábitos de estudio</li>
+                    <li>Poco acceso a recursos pedagógicos actualizados</li>
+                </ul>
+            </div>
+            
+            <div class="ps-box solution-box">
+                <h3 class="ps-title">💡 ICFES Supérate</h3>
+                <ul class="ps-list">
+                    <li>Democratizar el acceso a materiales de calidad</li>
+                    <li>Fortalecer competencias en todas las áreas evaluadas</li>
+                    <li>Fomentar autonomía y hábitos de estudio efectivos</li>
+                    <li>Herramientas interactivas y confiables 100% gratis</li>
+                    <li>Tecnología accesible desde cualquier dispositivo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">⚡ Funcionalidades Completas</h2>
+        <p class="section-subtitle">Todo lo que necesitas para dominar el ICFES</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">📚</span>
+                <h3 class="feature-title">Banco de Preguntas</h3>
+                <p class="feature-desc">Más de 300 preguntas interactivas en lectura crítica, matemáticas, ciencias sociales, ciencias naturales e inglés</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Simulacros Completos</h3>
+                <p class="feature-desc">Practica con simulacros que recrean la experiencia real del examen ICFES</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3 class="feature-title">Retroalimentación Inmediata</h3>
+                <p class="feature-desc">Identifica fortalezas y debilidades al instante con análisis detallados</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3 class="feature-title">Interfaz Atractiva</h3>
+                <p class="feature-desc">Diseño moderno, intuitivo y fácil de usar que hace el estudio agradable</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🏆</span>
+                <h3 class="feature-title">Gamificación</h3>
+                <p class="feature-desc">Niveles, logros, rachas y puntos XP que hacen el aprendizaje divertido</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3 class="feature-title">Multiplataforma</h3>
+                <p class="feature-desc">Funciona en Android, iOS, Web y Desktop. Todo sincronizado en la nube</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Section -->
+    <section class="screenshots">
+        <h2 class="section-title">📱 Descubre la App</h2>
+        <p class="section-subtitle">Una experiencia visual diseñada para motivarte</p>
+        
+        <div class="mockup-grid">
+            <div class="mockup-card">
+                <span class="mockup-icon">📚</span>
+                <h3 class="mockup-title">Selecciona tu Materia</h3>
+                <p class="mockup-desc">6 áreas con colores únicos</p>
+            </div>
+            
+            <div class="mockup-card">
+                <span class="mockup-icon">📊</span>
+                <h3 class="mockup-title">Dashboard Personal</h3>
+                <p class="mockup-desc">Ve tu progreso y estadísticas</p>
+            </div>
+            
+            <div class="mockup-card">
+                <span class="mockup-icon">🎯</span>
+                <h3 class="mockup-title">Progreso por Materia</h3>
+                <p class="mockup-desc">Barras detalladas por área</p>
+            </div>
+            
+            <div class="mockup-card">
+                <span class="mockup-icon">🏆</span>
+                <h3 class="mockup-title">Logros y Niveles</h3>
+                <p class="mockup-desc">Sistema XP motivador</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Download Section -->
+    <section class="download-section">
+        <h2>📲 ¡Descarga ICFES Supérate!</h2>
+        <p>Disponible completamente GRATIS para todos los estudiantes</p>
+        
+        <div class="download-qr">
+            <p style="color: #333; font-size: 1.2em; font-weight: bold; margin-bottom: 15px;">Escanea el código QR</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://scan.page/8QdEV3" alt="QR ICFES Supérate">
+            <p style="color: #666; margin-top: 15px;">O haz clic abajo</p>
+        </div>
+        
+        <a href="https://scan.page/8QdEV3" class="download-link" target="_blank">
+            🚀 Descargar APK (Android)
+        </a>
+        
+        <p style="margin-top: 35px; font-size: 1.1em;">
+            ✅ Compatible con Android 6.0+<br>
+            ✅ 100% Seguro y Sin Publicidad Invasiva
+        </p>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="section" style="background: linear-gradient(180deg, #16213e 0%, #0f3460 100%);">
+        <h2 class="section-title">🌟 ¿Por Qué ICFES Supérate?</h2>
+        <p class="section-subtitle">Lo que nos hace únicos</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <span class="benefit-icon">✅</span>
+                <h3 class="benefit-title">100% Gratuito</h3>
+                <p class="benefit-desc">Educación de calidad para todos</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🚀</span>
+                <h3 class="benefit-title">Tecnología Moderna</h3>
+                <p class="benefit-desc">Flutter y Firebase de Google</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🎯</span>
+                <h3 class="benefit-title">Resultados Reales</h3>
+                <p class="benefit-desc">Diseñado para mejorar tu puntaje</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🎮</span>
+                <h3 class="benefit-title">Gamificación</h3>
+                <p class="benefit-desc">Estudiar es divertido y motivador</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">📱</span>
+                <h3 class="benefit-title">Multiplataforma</h3>
+                <p class="benefit-desc">Estudia desde cualquier dispositivo</p>
+            </div>
+            
+            <div class="benefit-card">
+                <span class="benefit-icon">🇨🇴</span>
+                <h3 class="benefit-title">Hecho en Colombia</h3>
+                <p class="benefit-desc">Por y para estudiantes colombianos</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2 class="section-title">👨‍💻 Conoce al Equipo</h2>
+        <p class="section-subtitle">Dos estudiantes con una misión: democratizar la educación</p>
+        
+        <div class="team-members-grid">
+            <div class="member-card">
+                <div class="member-avatar">E</div>
+                <h3 class="member-name">Enmanuel Josué<br>Machado Medina</h3>
+                <p class="member-role">Co-Fundador & Desarrollador</p>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-avatar">E</div>
+                <h3 class="member-name">Edwin Daniel<br>Arias Rebolledo</h3>
+                <p class="member-role">Co-Fundador & Desarrollador</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 60px; max-width: 900px; margin-left: auto; margin-right: auto; background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15)); padding: 40px; border-radius: 25px; border: 2px solid rgba(102, 126, 234, 0.4);">
+            <h3 style="font-size: 1.8em; margin-bottom: 20px; color: #667eea; text-align: center;">💡 Nuestra Historia</h3>
+            <p style="font-size: 1.2em; line-height: 1.8; color: #ccc; text-align: center;">
+                Como estudiantes, vivimos la frustración de que los cursos de preparación para el ICFES fueran inaccesibles. Así nació <strong style="color: #667eea;">ICFES Supérate</strong>: una plataforma que democratiza la educación mediante tecnología, para que ningún estudiante tenga que renunciar a sus sueños por falta de recursos.
+            </p>
+        </div>
